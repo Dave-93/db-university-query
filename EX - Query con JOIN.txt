@@ -1,0 +1,46 @@
+1)
+SELECT *
+FROM students AS s 
+JOIN degrees AS d ON s.degree_id = d.id
+WHERE d.name = 'Corso di Laurea in Economia';
+
+2)
+SELECT *
+FROM departments AS dep
+JOIN degrees AS deg ON  dep.id = deg.department_id
+WHERE dep.name = 'Dipartimento di Neuroscienze' AND deg.level = 'magistrale';
+
+3)
+SELECT t.id AS 'ID Prof. F.Amato', c.name AS 'Nome Corsi'
+FROM teachers AS t
+JOIN course_teacher AS ct ON ct.teacher_id = t.id
+JOIN courses AS c ON c.id = ct.course_id
+WHERE t.id = 44;
+
+4)
+SELECT s.*, deg.name AS 'Corso di Laurea', dep.name AS 'Dipartimento'
+FROM students AS s
+JOIN degrees AS deg ON s.degree_id = deg.id
+JOIN departments AS dep ON deg.department_id = dep.id
+ORDER BY s.surname, s.name;
+
+
+5)	???
+SELECT d.name AS 'Corsi Laurea', c.name AS 'Corsi', t.id AS 'Prof'
+FROM degrees AS d
+JOIN courses AS c ON d.id = c.degree_id
+JOIN course_teacher AS ct ON c.id = ct.course_id
+JOIN teachers AS t ON ct.teacher_id = t.id
+#GROUP BY d.name;
+
+6)
+SELECT t.*, dep.name
+FROM teachers AS t
+JOIN course_teacher AS ct ON t.id = ct.teacher_id
+JOIN courses AS c ON ct.course_id = c.id
+JOIN degrees AS deg ON c.degree_id = deg.id
+JOIN departments AS dep ON deg.department_id = dep.id
+WHERE dep.name like 'Dipartimento di Matematica'
+GROUP BY t.id;
+
+7)
